@@ -21,7 +21,7 @@ fs.appendFile(
 
 mongoose
   .connect(
-    "mongodb+srv://rakabiswal123:rakabiswal123@cluster0.zlju9wx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    "Your Url"
   )
   .then(() => {
     console.log("Mongo Db Connect..");

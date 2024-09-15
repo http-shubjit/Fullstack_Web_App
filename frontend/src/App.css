@@ -1,0 +1,24 @@
+.form-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.submit-button:hover {
+  background-color: #2a2b2d;
+  color: white;
+}

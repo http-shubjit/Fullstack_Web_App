@@ -1,90 +1,37 @@
-const fs=require("fs")
+require('dotenv').config();
 const express = require("express");
-const mongoose = require("mongoose");
-const app = express(); 
+const { connectMongoDB} = require('./connection');
+const {logResponse}=require('./middlewares/index')
+const useRouter=require("./routes/user") // Move this line up
 
+const app = express();
+const PORT = 8000;
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(logResponse("log.txt"));
 
 
-app.use((req, res, next) => {
-const formattedDate = new Date(Date.now()).toLocaleString(); 
-fs.appendFile(
-    "log.txt",
-    `${formattedDate} || Request method is : ${req.method} || Request path is :  ${req.path}\n`,
-    (err) => {
-      if (err) throw err;
-      next();
-    }
-  );
-});
 
-mongoose
-  .connect(
-    "Your Url"
-  )
-  .then(() => {
-    console.log("Mongo Db Connect..");
-  })
-  .catch((err) => {
-    console.log("Error" + err);
-  });
+const URL = process.env.URL
 
-  const userSchmea = new mongoose.Schema({
-    first_name: {
-      type: String,
-      required: true,
-    },
-    last_name: {
-      type: String,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    gender: {
-      type: String,
-      required: true,
-    },
-    job_tittle: {
-      type: String,
-    },
-  });
 
-const User = mongoose.model("User", userSchmea);
+connectMongoDB(URL)
+  .then(() => console.log("MongoDB connected successfully."))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+
+
+// user
+app.use("/users",useRouter);
+
+
   
-app.post("/post",async (req, res) => {
-    const body = req.body;
-    console.log(req)
-    if (
-      !body ||
-      !body.first_name ||
-      !body.last_name ||
-      !body.email ||
-      !body.gender ||
-      !body.job_tittle
-    ) {
-      res.status(400).json({ msg: "all field are required" });
-    }
-    const result = await User.create({
-      first_name: body.first_name,
-      last_name: body.last_name,
-      email: body.email,
-      gender: body.gender,
-      job_tittle: body.job_tittle,
-    });
-    res.status(201).json({ msg: "user created" });
-})
-  
-app.get("/get", async (req, res) => {
-    const alluser = await User.find({});
-    const html = alluser.map((user) => `<li>${user.first_name}</li>`).join("");
-    res.send(alluser);
-  });
 
 
 
-app.listen(8000, () => {
-  console.log("server start");
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

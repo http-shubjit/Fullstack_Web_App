@@ -1,18 +1,29 @@
-16/9/2024, 7:32:55 pm || Request method: GET || Request path: /users
-16/9/2024, 7:34:03 pm || Request method: POST || Request path: /users
-16/9/2024, 7:35:19 pm || Request method: POST || Request path: /users
-16/9/2024, 7:35:28 pm || Request method: POST || Request path: /users
-16/9/2024, 7:36:05 pm || Request method: GET || Request path: /users
-16/9/2024, 7:39:55 pm || Request method: PUT || Request path: /users/8260156061
-16/9/2024, 7:42:32 pm || Request method: GET || Request path: /users
-16/9/2024, 7:44:09 pm || Request method: PUT || Request path: /users/8260156061
-16/9/2024, 7:45:29 pm || Request method: PUT || Request path: /users/8260156061
-16/9/2024, 7:46:36 pm || Request method: PUT || Request path: /users/8260156061
-16/9/2024, 7:46:52 pm || Request method: PUT || Request path: /users/8260156061
-16/9/2024, 7:47:00 pm || Request method: GET || Request path: /users
-18/9/2024, 9:02:30 pm || Request method: GET || Request path: /test
-18/9/2024, 9:02:54 pm || Request method: GET || Request path: /
-18/9/2024, 9:02:58 pm || Request method: GET || Request path: /
-18/9/2024, 9:03:04 pm || Request method: GET || Request path: /
-18/9/2024, 9:06:54 pm || Request method: GET || Request path: /
-18/9/2024, 9:07:13 pm || Request method: GET || Request path: /users
+--------------------------------------------------
+|                  Sign Up                        |
+|                                                |
+|  Name:         [________________________]      |
+|  Email:        [________________________]      |
+|  Password:     [________________________]      |
+|  Confirm:      [________________________]      |
+|                                                |
+|  [ ] I agree to the Terms of Service           |
+|                                                |
+|  [ Sign Up ]                                   |
+|                                                |
+|  Already have an account? [Sign In]            |
+--------------------------------------------------
+
+--------------------------------------------------
+|                  Sign In                        |
+|                                                |
+|  Email/Username: [________________________]    |
+|  Password:      [________________________]    |
+|                                                |
+|  [ ] Remember Me                               |
+|                                                |
+|  [ Sign In ]                                  |
+|                                                |
+|  Forgot your password? [Click here]           |
+|                                                |
+|  Don't have an account? [Sign Up]             |
+--------------------------------------------------

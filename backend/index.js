@@ -1,37 +1,53 @@
 require('dotenv').config();
 const express = require("express");
-const { connectMongoDB} = require('./connection');
-const {logResponse}=require('./middlewares/index')
-const useRouter=require("./routes/user") // Move this line up
+const path = require('path')
+const cookieParser=require('cookie-parser')
+
+const { getCoonectToDB } = require("./connection.js"); // 
+const{checkForAunthentication,restrictTO}=require("./middlewares/auth.js")
+
+
+
+
+const urlRoute = require("./routes/url.js")
+const staticRoute = require("./routes/staticRoute.js")
+const userRoute=require("./routes/user.js")
+
 
 const app = express();
-const PORT = 8000;
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(logResponse("log.txt"));
+PORT = 8000;
 
 
 
-const URL = process.env.URL
+const url=process.env.URL
 
-
-connectMongoDB(URL)
+getCoonectToDB(url)
   .then(() => console.log("MongoDB connected successfully."))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+app.set("view engine", 'ejs');//i tell epress i use view engine as ejs 
+app.set("views",path.resolve("./views"))// and tell exprees all my views are in ./views folder here "views" is a constructor
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(checkForAunthentication);
 
 
-// user
-app.use("/users",useRouter);
-
-
-  
 
 
 
 
-// Start the server
+app.use("/",staticRoute)
+
+//
+app.use("/url",restrictTO(["NORMAL","ADMIN"]), urlRoute)
+
+app.use("/user",userRoute)
+
+
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log("Server Start at http://localhost:"+PORT);
 });
+
+

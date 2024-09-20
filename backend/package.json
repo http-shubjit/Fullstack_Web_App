@@ -1,17 +1,22 @@
 {
-  "name": "backend",
+  "name": "20_short_url",
   "version": "1.0.0",
-  "main": " index.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "mongodb": "^6.9.0",
-    "mongoose": "^8.6.2"
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "generate-unique-id": "^2.0.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.0",
+    "nodemon": "^3.1.4"
   }
 }
